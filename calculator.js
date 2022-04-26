@@ -18,6 +18,7 @@ class Calculator {
     input.innerText = this.inp;
     answer.innerText = this.ans;
     symbol.innerText = this.sym;
+    if (String(answer.innerText).length > 20)  answer.style.fontSize = '15px';
   } 
 
   delete() {
@@ -34,10 +35,14 @@ class Calculator {
   }
 
   operation(char, mainOperation) {
-    this.inp = Number(this.inp);
-    this.ans = this.ans ? mainOperation : this.inp;
-    this.inp = 0;
-    this.sym = char;
+    if (this.ans && !this.sym && !this.inp) {
+      this.sym = char;
+    } else {
+      this.inp = Number(this.inp);
+      this.ans = this.ans ? mainOperation : this.inp;
+      this.inp = 0;
+      this.sym = char;
+    }
   }
 
   addition() {
@@ -74,7 +79,7 @@ class Calculator {
     const root = Math.sqrt(this.inp);
     this.ans = root;
     this.inp = 0;
-    this.sym = 'sqrt';
+    this.sym = '√';
     this.render();
   }
 
@@ -97,6 +102,7 @@ class Calculator {
         this.ans = this.ans ** this.inp;
         break;
       default:
+        this.ans = this.inp;
         break;
     }
     this.inp = 0;
