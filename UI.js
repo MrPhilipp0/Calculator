@@ -6,7 +6,7 @@ class UI extends Calculator {
 
 const calc = new UI();
 
-// wpisywanie liczb z buttonów
+// writing numbers from keyboard
 numberBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     if (String(calc.inp).length < 16) {
@@ -20,7 +20,7 @@ numberBtns.forEach(btn => {
   })
 });
 
-// wpisywanie liczb i znaków z klawiatury
+// handle numbers and operators from keyboard 
 document.addEventListener('keypress', e => {
   const numButton = e.key;
   if (!isNaN(Number(numButton)) && String(calc.inp).length < 16) {
@@ -66,13 +66,13 @@ document.addEventListener('keypress', e => {
   calc.render();
 })
 
-// obsługa kropki
+// handle dot
 dot.addEventListener('click', () => {
   if (String(calc.inp).indexOf('.') === -1) calc.inp = calc.inp + '.';
   calc.render();
 });
 
-// obsługa operatorów
+// handle operator buttons
 handleBtns.forEach(btn => {
   btn.addEventListener('click', e => {
     const eId = e.target.id;
